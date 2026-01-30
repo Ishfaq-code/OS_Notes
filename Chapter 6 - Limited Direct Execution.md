@@ -1,11 +1,19 @@
 #OS #Process #Quiz_1 #Test_1 #Virtualization
 
-**Limited Directed Execution**: 
+**Challenges with Time Sharing Virtualization**:
+- Performance - need to implement virtualization without adding excessive overhead to the system
+- Control - How to run processes efficiently while retaining control over the CPU
+	- Without control a process can run forever or access info that should not be allowed
+
+**Crux:** How to efficiently virtualize the CPU with Control
+- OS must virtualize the CPU in an efficient manner while retaining control over the system
+
+**Limited Directed Execution**:  Run the program directly on CPU
 - Create entry for process list
 - Allocate memory for program
 - Load program into memory
 - Clear registers
-- Execute call main()
+- Execute call `main()`
 - Problems:
 	- Program can do anything
 	- OS can't stop it
