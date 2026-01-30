@@ -188,6 +188,10 @@ Classic machines like the PDP family from Digital Equipment made computers hugel
 - HPUX from HP
 - IRIX from SGI
 
+Step backward from DoS (Disk Operating System from Microsoft) as didn't think of memory protection
+
+Early versions of Mac took cooperative approach to scheduling and was stuck on infinite loops
+
 
 [[Chapter 4 - The Abstraction - Process]]
 

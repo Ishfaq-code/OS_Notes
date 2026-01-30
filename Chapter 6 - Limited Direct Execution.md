@@ -151,6 +151,15 @@ Scheduler makes decision if to whether to continue running the currently running
 	- By switching stacks, the kernel enters the call to the switch code in the context of one process and returns the context of another
 	- OS executed return from trap instruction, the soon to be executing process becomes the currently running process
 
+- A timer interrupt stops Process A and switches the CPU to kernel mode.
+- The CPU saves Process A’s current state onto **A’s kernel stack**.
+- The OS saves A’s register state from the kernel stack into **A’s process control block (PCB)**.
+- The scheduler selects Process B to run next
+- The OS restores Process B’s saved register state from **B’s PCB**.
+- The CPU switches to **B’s kernel stack**.
+- The system returns from the interrupt, restoring registers from B’s kernel stack.
+- The CPU switches back to user mode and Process B resumes execution.
+
 
 
 [[Chapter 7 - Scheduling_Intro]]
