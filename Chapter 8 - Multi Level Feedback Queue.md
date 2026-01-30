@@ -7,6 +7,7 @@
 		- Minimize response time
 - Crux: How to schedule without perfect knowledge
 
+
 **Basic Rules:**
 - Number of distinct queues each assigned a different priority level
 	- Uses priorities to decide which job should run at a given time --> higher priority chosen to run
@@ -14,7 +15,9 @@
 	- Priority (A) = Priority (B) := A & B run in RR (R2)
 - Key lies to how scheduler sets to priority
 	- Varies priority by observed behavior
-	- Predict future behavior
+		- If job reputedly relinquishes the CPU while waiting for the input from keyboard, keep priority high, indicates interaction
+		- If CPU used for long intestine time, reduce priority
+	- Predict future behavior using history of behavior
 - Lower priority jobs may never be run
 	- Need to change priority over time
 
@@ -25,10 +28,15 @@
 - If job uses up allotment while running, it's priority is reduced, moves down one queue (R4a)
 - If a job gives up the CPU before allotment is up, it stays at the same priority level (allotment reset) (R4b)
 - Single long running job
+	- Moves down each time slice (as allotment is up)
 	- Moves down queue as expected
 - Short job while long running
 	- Put at highest priority
 	- Moved down slowly
+	- Doesn't know if it will long or short job
+		- Assumes short job and moves down the queue
+		- If it is actually a short job will run quickly and complete
+		- Approximates SJF
 - I/O
 	- Keep at the same level as it would be fast jobs
 - Problems
@@ -37,6 +45,7 @@
 	- Game The Scheduler: Giving you more than the fair share of resources
 		- I/O operation before allotment finishes to reset allotment
 	- Program may change behavior over time
+		- Might use CPU after moving down the queue
 
 
 **Priority Boost**
@@ -45,6 +54,8 @@
 	- Process are guaranteed not to starve: Sitting at top queue, job will share the CPU with other high priority jobs in round robin fashion and eventually receive service 
 	- Interactive job is treated properly once it reaches priority
 - No good value for S realistically
+	- voo-doo constant by John Ousterhout
+	- Ousterhout's Law: Configuration file with default value that System Administrator can tweak when something isn't working right
 
 **Better Accounting**
 - Don't forget allotment after using CPU time (especially in the case of I/O jobs)
@@ -55,10 +66,12 @@
 - Most use short time slices for high priority queues
 - Longer time slices for low priority queue
 - As job moves down priority, typically gets more CPU time per turn
+- MOST MLFG variants allow varying time slice length across different queues 
 
 Different operating systems implement MLFQ differently:
 
 - **Solaris (TS scheduler)** uses configurable tables that define priorities, time slices, and priority boosts. Defaults include many queues (e.g., ~60), time slices ranging from ~20 ms to a few hundred ms, and periodic priority boosts (about once per second).
+	- Time Scheulder
     
 - **FreeBSD** calculates priorities using formulas based on recent CPU usage, which decays over time to naturally boost priority for waiting jobs.
 
