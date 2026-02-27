@@ -5,4 +5,9 @@ Contents:
 [[Chapter 7 - Scheduling_Intro]]
 [[Chapter 8 - Multi Level Feedback Queue]]
 [[Chapter 9 - Proportional Share]]
-
+[[Chapter 13 - Address Spaces]]
+[[Chapter 15 - Address Translation]]
+[[Chapter 16 - Segmentation]]
+[[Chapter 17 - Free Space Management]]
+[[Test 1]]
+[[Test 2]]
